@@ -1,5 +1,10 @@
 # OpenResume
 
+## About the Fork
+In this fork I plane to add following features
+- [ ] Support for code repo and live deployment links of projects
+- [ ] option to make certain text bold, italic using markdown syntax 
+
 OpenResume is a powerful open-source resume builder and resume parser.
 
 The goal of OpenResume is to provide everyone with free access to a modern professional resume design and enable anyone to apply for jobs with confidence.
