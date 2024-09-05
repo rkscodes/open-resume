@@ -44,7 +44,7 @@ export const ResumePDFProject = ({
                   alignItems: "center",
                   gap: spacing["1"],
                 }}>
-                  {link && <ResumePDFIcon type="url_github" isPDF={isPDF} />}
+                  {link && <ResumePDFIcon type="url" isPDF={isPDF} />}
                   <ResumePDFText bold={true} style={textStyle}>
                     {project}
                   </ResumePDFText>
