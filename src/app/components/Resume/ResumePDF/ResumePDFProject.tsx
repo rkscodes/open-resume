@@ -22,35 +22,43 @@ export const ResumePDFProject = ({
   themeColor: string;
   isPDF: boolean;
 }) => {
-  
+  const textStyleWithLink = { color: '#007BFF', textDecoration: 'none' };
+  const textStyleWithoutLink = { color: 'black' };
   return (
     <ResumePDFSection themeColor={themeColor} heading={heading}>
-      {projects.map(({ project, date, link, descriptions }, idx) => (
-        <View key={idx}>
-          <View
-            style={{
-              ...styles.flexRowBetween,
-              marginTop: spacing["0.5"],
-            }}
-          >
-            <View style={{
-                ...styles.flexRow,
-                alignItems: "center",
-                gap: spacing["1"],
-              }}>
-              <ResumePDFLink src={link} isPDF={isPDF}>{
-                <ResumePDFText bold={true}>{project}</ResumePDFText>
-              }</ResumePDFLink>
-              {link && <ResumePDFIcon type="url" isPDF={isPDF}></ResumePDFIcon>}
-            </View>
+      {projects.map(({ project, date, link, descriptions }, idx) => {
+        // Determine style based on the presence of a link
+        const textStyle = link ? textStyleWithLink : textStyleWithoutLink;
 
-            <ResumePDFText>{date}</ResumePDFText>
+        return (
+          <View key={idx}>
+            <View
+              style={{
+                ...styles.flexRowBetween,
+                marginTop: spacing["0.5"],
+              }}
+            >
+              <ResumePDFLink src={link} isPDF={isPDF}>
+                <View style={{
+                  ...styles.flexRow,
+                  alignItems: "center",
+                  gap: spacing["1"],
+                }}>
+                  {link && <ResumePDFIcon type="url_github" isPDF={isPDF} />}
+                  <ResumePDFText bold={true} style={textStyle}>
+                    {project}
+                  </ResumePDFText>
+                </View>
+              </ResumePDFLink>
+
+              <ResumePDFText>{date}</ResumePDFText>
+            </View>
+            <View style={{ ...styles.flexCol, marginTop: spacing["0.5"] }}>
+              <ResumePDFBulletList items={descriptions} />
+            </View>
           </View>
-          <View style={{ ...styles.flexCol, marginTop: spacing["0.5"] }}>
-            <ResumePDFBulletList items={descriptions} />
-          </View>
-        </View>
-      ))}
+        );
+      })}
     </ResumePDFSection>
   );
 };
